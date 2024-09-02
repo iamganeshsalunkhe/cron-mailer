@@ -11,3 +11,7 @@ router.get('/email',authenticate,emailController.getEmails);
 
 // for creating mail 
 router.post('/email',authenticate,emailController.createMail);
+
+// for updating info of mail
+router.put('/email',authenticate,emailController.updateMail);
+

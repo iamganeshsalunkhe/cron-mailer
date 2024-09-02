@@ -43,3 +43,38 @@ exports.createMail = async(req,res)=>{
         res.status(500).json({message:'Error while creating a mail'});
     };
 };
+
+
+// update the mail
+exports.updateMail = async(req,res)=>{
+    try {
+        // get emailId from req.params
+        const {emailId}= req.params;
+
+        // get data from user as input
+        const {recipientEmail,ccEmail,subject,body,scheduledTime}= req.body;
+
+        // search for email using emailId
+        const emailToUpdate = await emails.findByPk(emailId);
+        
+        // if some data not passed by user then use already present data
+        emailToUpdate.recipientEmail = recipientEmail ||emailToUpdate.recipientEmail;
+
+        emailToUpdate.scheduledTime = scheduledTime || emailToUpdate.scheduledTime;
+
+        emailToUpdate.subject = subject || emailToUpdate.subject;
+
+        emailToUpdate.body = body || emailToUpdate.body;
+
+        emailToUpdate.ccEmail = ccEmail || emailToUpdate.ccEmail;
+
+        // save the changes
+        await emailToUpdate.save();
+
+        res.status(200).json(emailToUpdate);
+        
+    } catch (error) {
+        // if any error occurs
+        res.status(500).json({message:"Error while updating the mails"});
+    }
+};

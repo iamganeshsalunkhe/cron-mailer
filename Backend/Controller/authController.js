@@ -72,3 +72,28 @@ exports.login = async (req,res)=>{
         res.status(500).json({message:"Error while logging in"});
     };
 };
+
+// forgot password functionality
+
+exports.forgotPassword = async (req,res)=>{
+    try {
+        // get the required input from user
+        const {email,password}= req.body;
+        const user = await users.findOne({where:{email}});
+
+        // if user not exists
+        if (!user)return res.status(404).json({message:"User not found!"});
+
+        const hashPassword = await bcryptjs.hash(password,10);
+        
+        // changes the old password with new one
+        user.password = hashPassword;
+
+        await user.save();
+        res.status(200).json({message:"Password changed successfully"});
+
+    } catch (error) {
+        // if any error occurs
+        res.status(400).json({message:"Error while updating password"})        
+    }
+};

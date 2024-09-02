@@ -97,3 +97,9 @@ exports.forgotPassword = async (req,res)=>{
         res.status(400).json({message:"Error while updating password"})        
     }
 };
+
+// logout functionality
+exports.logout = async (req,res)=>{
+    res.clearCookies('token');
+    res.status(200).json({message:"Logged out successfully"});
+}

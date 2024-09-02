@@ -14,3 +14,6 @@ router.post('/login',authController.login);
 
 // for forgot password 
 router.post('/forgotPassword',authController.forgotPassword);
+
+// for logout 
+router.post('/logout',authenticate,authController.logout);

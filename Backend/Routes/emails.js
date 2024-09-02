@@ -7,5 +7,7 @@ const router = express.Router();
 
 // define routes
 //for getting all emails
-router.get('/emails',authenticate,emailController.getEmails);
+router.get('/email',authenticate,emailController.getEmails);
 
+// for creating mail 
+router.post('/email',authenticate,emailController.createMail);

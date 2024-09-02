@@ -25,11 +25,11 @@ app.use(cors({
 
 // importing routes
 const authRoute = require('./Routes/auth');
-
+const emailRoute = require('./Routes/emails');
 
 // using routes
 app.use('/',authRoute);
-
+app.use('/',emailRoute);
 
 // listening
 app.listen(PORT,()=>{

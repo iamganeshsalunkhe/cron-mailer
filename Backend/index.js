@@ -23,6 +23,14 @@ app.use(cors({
 }
 ));
 
+// importing routes
+const authRoute = require('./Routes/auth');
+
+
+// using routes
+app.use('/',authRoute);
+
+
 // listening
 app.listen(PORT,()=>{
     console.log(`Server listening on PORT ${PORT}`);

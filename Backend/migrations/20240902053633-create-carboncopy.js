@@ -10,8 +10,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       ccEmail: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull:true
+      },
+      emailId:{
+        type:Sequelize.INTEGER
       }
+
     });
   },
   async down(queryInterface, Sequelize) {

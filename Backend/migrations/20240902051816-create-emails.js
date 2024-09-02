@@ -29,6 +29,9 @@ module.exports = {
       },
       status:{
         type:Sequelize.ENUM('Scheduled','Sent','Failed')
+      },
+      userId:{
+        type:Sequelize.INTEGER
       }
     });
   },

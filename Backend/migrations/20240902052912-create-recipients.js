@@ -11,6 +11,9 @@ module.exports = {
       },
       recipient: {
         type: Sequelize.STRING
+      },
+      emailId:{
+        type:Sequelize.INTEGER
       }
     });
   },

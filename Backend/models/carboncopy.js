@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      // a carboncopy belongs to an email
+      Carboncopy.belongsTo(models.emails,{foreignKey:'emailId'});
     }
   }
   Carboncopy.init({
@@ -19,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey:true,
       autoIncrement:true
     },
-    ccEmail: DataTypes.STRING
+    ccEmail: DataTypes.STRING,
+    emailId:DataTypes.INTEGER
   }, {
     sequelize,
     tableName:'Carboncopy',

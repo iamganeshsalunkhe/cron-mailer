@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      // a recipient belongs to an email
+      Recipients.belongsTo(models.emails,{foreignKey:'emailId'})
+
     }
   }
   Recipients.init({
@@ -19,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey:true,
       autoIncrement:true
     },
-    recipient: DataTypes.STRING
+    recipient: DataTypes.STRING,
+    emailId:DataTypes.INTEGER
   }, {
     sequelize,
     tableName:'Recipients',

@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class emails extends Model {
+  class Emails extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,9 +11,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // an email belongs to a user
+      Emails.belongsTo(models.users,{foreignKey:'userId'});
+      
+      // an email can have many recipients
+      Emails.hasMany(models.recipients,{foreignKey:'emailId'});
+      
+      // an email can have many carboncopies
+      Emails.hasMany(models.carboncopy,{foreignKey:'emailId'});
     }
   }
-  emails.init({
+  Emails.init({
     emailId:{
       type:DataTypes.INTEGER,
       primaryKey:true,
@@ -31,8 +39,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     tableName:'Emails',
-    modelName: 'Emails',
+    modelName:'Emails',
     timestamps:false
   });
-  return emails;
+  return Emails;
 };

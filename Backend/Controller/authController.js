@@ -36,3 +36,39 @@ exports.signup = async (req,res)=>{
         res.status(500).json({message:"Error while creating a user"});
     }    
 };
+
+// for login functionality
+
+exports.login = async (req,res)=>{
+    try {
+        // get input from user 
+        const {email,password} = req.body;
+
+        // find the user using email
+        const user = await users.findOne({where:{email}});
+
+        // if email not exists in our system
+        if (!user) return res.status(400).json({message:"Invalid email or you don't have account with us!!"});
+
+        // is password is correct
+        const checkPassword = await bcryptjs.compare(password,user.password);
+
+        // if password wrong
+        if (!checkPassword)return res.status(400).json({message:"Invalid password"});
+
+        // if password correct
+        // generate token
+        const token = generateAuthToken(user);
+
+        res.cookie('token',token,{
+            httpOnly:true,
+            maxAge:3600000,
+            secure:false,
+            sameSite:'Lax'
+        })
+        res.status(200).json({message:"Logged in successfully"});
+    } catch (error) {
+        // if any error occurs
+        res.status(500).json({message:"Error while logging in"});
+    };
+};

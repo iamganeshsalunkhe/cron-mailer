@@ -78,3 +78,27 @@ exports.updateMail = async(req,res)=>{
         res.status(500).json({message:"Error while updating the mails"});
     }
 };
+
+// for deleting mails
+
+exports.deleteMail = async(req,res)=>{
+    try {
+        // get emailId from req.params
+        const {emailId}= req.params;
+
+        // get mail from mailId
+        const mailToDelete = await emails.findByPk(emailId);
+
+        // if no mail found
+        if (!mailToDelete) return res.status(404).json({message:"Mail not found"});
+        
+        // delete the mail
+        await mailToDelete.destroy();
+
+        // response on success
+        res.status(200).json({message:"Mail deleted successfully"});
+    } catch (error) {
+        // if any error occurs
+        res.status(500).json({message:"Error while deleting a mail"});
+    };
+};

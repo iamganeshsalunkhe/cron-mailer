@@ -1,6 +1,15 @@
+import { BrowserRouter,Routes,Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import Signuppage from "./Pages/Signuppage";
+
 function App() {
   return (
-    <h1 className="">Hellooo</h1>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Signuppage/>}/>
+      </Routes>
+      <Toaster/>
+    </BrowserRouter>
   )
 }
 

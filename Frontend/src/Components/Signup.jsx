@@ -62,14 +62,14 @@ function Signup() {
     return (
       
           <div className="flex items-center justify-center min-h-screen bg-indigo-500">
-            <div className="w-72 max-w-md p-2 rounded-xl shadow-md  bg-white h-[500px]">
+            <div className="w-72 max-w-md p-2 rounded-xl shadow-md  bg-white h-[420px]">
               <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                <h2 className="mt-3 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                   Registration
                 </h2>
               </div>
 
-              <div className="mt-10 sm:mx-auto sm:w-56 sm:max-w-sm">
+              <div className="mt-5 sm:mx-auto sm:w-56 sm:max-w-sm">
                 <form onSubmit={onSubmit} method="POST" className="space-y-6">
                   <div>
                     <div className="mt-2">

@@ -1,6 +1,6 @@
 // import required module
 const bcryptjs = require('bcryptjs');
-const {users} = require('../models');
+const {Users} = require('../models');
 const generateAuthToken = require('../Utils/authToken');
 
 
@@ -13,7 +13,7 @@ exports.signup = async (req,res)=>{
         const {username,email, password} = req.body;
         
         // check the user is already exits
-        const checkUser = await users.findOne({where:email});
+        const checkUser = await Users.findOne({where:{email}});
 
         // if user already present 
         if (checkUser)return res.status(400).json({message:"You already have account with us!! Please login!"});
@@ -24,7 +24,7 @@ exports.signup = async (req,res)=>{
         const hashPassword = await bcryptjs.hash(password,10);
 
         //create a new user
-        const createUser = await users.create({
+        const createUser = await Users.create({
             username,
             email,
             password:hashPassword
@@ -45,7 +45,7 @@ exports.login = async (req,res)=>{
         const {email,password} = req.body;
 
         // find the user using email
-        const user = await users.findOne({where:{email}});
+        const user = await Users.findOne({where:{email}});
 
         // if email not exists in our system
         if (!user) return res.status(400).json({message:"Invalid email or you don't have account with us!!"});
@@ -79,7 +79,7 @@ exports.forgotPassword = async (req,res)=>{
     try {
         // get the required input from user
         const {email,password}= req.body;
-        const user = await users.findOne({where:{email}});
+        const user = await Users.findOne({where:{email}});
 
         // if user not exists
         if (!user)return res.status(404).json({message:"User not found!"});

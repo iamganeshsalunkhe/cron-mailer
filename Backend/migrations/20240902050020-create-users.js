@@ -23,7 +23,7 @@ module.exports = {
       },
       defaultEmail: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,

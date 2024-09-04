@@ -12,13 +12,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       // an email belongs to a user
-      Emails.belongsTo(models.users,{foreignKey:'userId'});
+      Emails.belongsTo(models.Users,{foreignKey:'userId'});
       
       // an email can have many recipients
-      Emails.hasMany(models.recipients,{foreignKey:'emailId'});
+      Emails.hasMany(models.Recipients,{foreignKey:'emailId'});
       
       // an email can have many carboncopies
-      Emails.hasMany(models.carboncopy,{foreignKey:'emailId'});
+      Emails.hasMany(models.Carboncopy,{foreignKey:'emailId'});
     }
   }
   Emails.init({

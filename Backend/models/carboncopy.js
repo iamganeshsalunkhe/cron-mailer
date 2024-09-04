@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
 
       // a carboncopy belongs to an email
-      Carboncopy.belongsTo(models.emails,{foreignKey:'emailId'});
+      Carboncopy.belongsTo(models.Emails,{foreignKey:'emailId'});
     }
   }
   Carboncopy.init({

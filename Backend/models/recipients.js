@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
 
       // a recipient belongs to an email
-      Recipients.belongsTo(models.emails,{foreignKey:'emailId'})
+      Recipients.belongsTo(models.Emails,{foreignKey:'emailId'})
 
     }
   }

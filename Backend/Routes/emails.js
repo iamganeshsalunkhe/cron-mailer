@@ -17,3 +17,5 @@ router.put('/email/:emailId',authenticate,emailController.updateMail);
 
 // for deleting mail
 router.delete('/email/:emailId',authenticate,emailController.deleteMail);
+
+module.exports = router;
